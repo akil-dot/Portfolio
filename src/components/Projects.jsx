@@ -31,7 +31,7 @@ const Projects = () => {
   return (
     <section id="work" style={{ background: '#ffffff' }} className="section">
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '60px' }} className="projects-header">
           <h2 className="section-title">Featured Projects</h2>
         </div>
 
@@ -42,7 +42,7 @@ const Projects = () => {
           gap: '12px',
           marginBottom: '48px',
           flexWrap: 'wrap',
-        }}>
+        }} className="project-tabs">
           {projects.map((project, index) => (
             <button
               key={project.id}
@@ -58,6 +58,7 @@ const Projects = () => {
                 transition: 'all 0.3s ease',
                 fontSize: '0.95rem',
               }}
+              className="project-tab"
               onMouseEnter={(e) => {
                 if (activeProject !== index) {
                   e.target.style.borderColor = '#93c5fd';
@@ -94,7 +95,7 @@ const Projects = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-          }}>
+          }} className="project-image-wrapper">
             <img
               src={projects[activeProject].category === 'Restaurant' ? '/restaurant.jpg' : '/salon.jpg'}
               alt={projects[activeProject].title}
@@ -104,11 +105,12 @@ const Projects = () => {
                 objectFit: 'cover',
                 objectPosition: 'center',
               }}
+              className="project-image"
             />
           </div>
 
           {/* Details */}
-          <div>
+          <div className="project-details">
             <div style={{
               display: 'inline-block',
               background: '#dbeafe',
@@ -127,7 +129,7 @@ const Projects = () => {
               fontWeight: 700,
               color: '#111827',
               marginBottom: '16px',
-            }}>
+            }} className="project-title">
               {projects[activeProject].title}
             </h3>
             
@@ -136,12 +138,12 @@ const Projects = () => {
               color: '#4b5563',
               marginBottom: '24px',
               lineHeight: 1.7,
-            }}>
+            }} className="project-description">
               {projects[activeProject].description}
             </p>
 
             {/* Features */}
-            <div style={{ marginBottom: '24px' }}>
+            <div style={{ marginBottom: '24px' }} className="features-section">
               <h4 style={{
                 fontSize: '0.9rem',
                 fontWeight: 600,
@@ -173,7 +175,7 @@ const Projects = () => {
             </div>
 
             {/* Tech Stack */}
-            <div style={{ marginBottom: '28px' }}>
+            <div style={{ marginBottom: '28px' }} className="tech-section">
               <h4 style={{
                 fontSize: '0.9rem',
                 fontWeight: 600,
@@ -204,7 +206,7 @@ const Projects = () => {
               href={projects[activeProject].link}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary"
+              className="btn btn-primary project-btn"
             >
               Visit Website ↗
             </a>
@@ -212,11 +214,92 @@ const Projects = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
+        /* Tablet */
+        @media (max-width: 1024px) {
+          .project-grid {
+            gap: 40px !important;
+            padding: 32px !important;
+          }
+          .project-image-wrapper {
+            min-height: 400px !important;
+          }
+          .project-title {
+            font-size: 1.5rem !important;
+          }
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
+          .projects-header {
+            margin-bottom: 40px !important;
+          }
+          
+          .project-tabs {
+            margin-bottom: 32px !important;
+          }
+          
+          .project-tab {
+            padding: 10px 20px !important;
+            font-size: 0.9rem !important;
+            flex: 1;
+            min-width: 140px;
+          }
+          
           .project-grid {
             grid-template-columns: 1fr !important;
+            gap: 32px !important;
             padding: 24px !important;
+          }
+          
+          .project-image-wrapper {
+            min-height: 300px !important;
+            order: -1;
+          }
+          
+          .project-title {
+            font-size: 1.4rem !important;
+          }
+          
+          .project-description {
+            font-size: 0.95rem !important;
+          }
+          
+          .project-btn {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+          .projects-header {
+            margin-bottom: 32px !important;
+          }
+          
+          .project-tab {
+            width: 100% !important;
+            padding: 12px 16px !important;
+            font-size: 0.85rem !important;
+          }
+          
+          .project-grid {
+            gap: 24px !important;
+            padding: 16px !important;
+            border-radius: 12px !important;
+          }
+          
+          .project-image-wrapper {
+            min-height: 220px !important;
+            border-radius: 12px !important;
+          }
+          
+          .project-title {
+            font-size: 1.2rem !important;
+          }
+          
+          .project-description {
+            font-size: 0.9rem !important;
           }
         }
       `}</style>
